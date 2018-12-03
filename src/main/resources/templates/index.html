@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/create-employee">Create new Employee</a>
+<h1><a href="/" style="text-decoration: none">Employees</a></h1>
+<th:block th:if="${message}">
+<p th:text="${message}"></p>
+</th:block>
+<!--<form method="post" th:action="@{/search}">-->
+    <!--<input type="text" name="word" placeholder="Search">-->
+    <!--&lt;!&ndash;<select  name="stt">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value="ASC" selected>Tăng dần</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value="DESC">Giảm dần</option>&ndash;&gt;-->
+    <!--&lt;!&ndash;</select>&ndash;&gt;-->
+    <!--<input id="search" type="submit" value="Search">-->
+<!--</form>-->
+<table border="1">
+    <tr>
+        <th>STT</th>
+        <th>Ma nhan vien</th>
+        <th>Nhom nhan vien</th>
+        <th>Ho ten</th>
+        <th>Gioi tinh</th>
+        <th>So dien thoai</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="employee,istart :${employees}">
+        <tr>
+            <td th:text="${istart.index+1}"></td>
+            <td th:text="${employee.id}"></td>
+            <td th:text="${employee.grEmployId}"></td>
+            <td th:text="${employee.name}"></td>
+            <td th:text="${employee.gender}"></td>
+            <td th:text="${employee.phoneNumber}"></td>
+            <td><a th:href="@{/edit-employee/__${employee.id}__}">Edit</a></td>
+            <td><a th:href="@{/delete-employee/__${employee.id}__}">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

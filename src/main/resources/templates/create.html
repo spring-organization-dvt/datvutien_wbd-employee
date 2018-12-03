@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Create New Employee</h1>
+<p>
+    <a href="/employees">Employee List</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form method="post" th:action="@{/create-employee}" th:object="${employee}">
+    <table>
+        <!--<tr>-->
+            <!--<td>Ma nhan vien</td>-->
+            <!--<td><input type="text" th:field="*{id}"/></td>-->
+        <!--</tr>-->
+        <tr>
+            <td>Nhom nhan vien</td>
+            <td><input type="text" th:field="*{grEmployId}"></td>
+        </tr>
+        <tr>
+            <td>Ho ten</td>
+            <td><input type="text" th:field="*{name}"></td>
+        </tr>
+        <tr><tr>
+            <td>Ngay sinh</td>
+            <td><input type="text" th:field="*{dayOfBirth}"/></td>
+        </tr>
+        <tr>
+            <td>Gioi tinh</td>
+            <td><input type="text" th:field="*{gender}"></td>
+        </tr>
+        <tr>
+            <td>So dien thoai</td>
+            <td><input type="text" th:field="*{phoneNumber}"></td>
+        </tr><tr><tr>
+            <td>So CMND</td>
+            <td><input type="text" th:field="*{idCard}"/></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="text" th:field="*{email}"></td>
+        </tr>
+        <tr>
+            <td>Dia chi</td>
+            <td><input type="text" th:field="*{address}"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Create Employee"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
