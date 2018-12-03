@@ -10,14 +10,10 @@
 <th:block th:if="${message}">
 <p th:text="${message}"></p>
 </th:block>
-<!--<form method="post" th:action="@{/search}">-->
-    <!--<input type="text" name="word" placeholder="Search">-->
-    <!--&lt;!&ndash;<select  name="stt">&ndash;&gt;-->
-        <!--&lt;!&ndash;<option value="ASC" selected>Tăng dần</option>&ndash;&gt;-->
-        <!--&lt;!&ndash;<option value="DESC">Giảm dần</option>&ndash;&gt;-->
-    <!--&lt;!&ndash;</select>&ndash;&gt;-->
-    <!--<input id="search" type="submit" value="Search">-->
-<!--</form>-->
+<form method="post" th:action="@{/search}">
+    <input type="text" name="word" placeholder="Search">
+    <input id="search" type="submit" value="Search">
+</form>
 <table border="1">
     <tr>
         <th>STT</th>

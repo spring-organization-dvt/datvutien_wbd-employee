@@ -4,10 +4,7 @@ import com.thinkpad.datvutienwbdemployeemanagement.model.Employee;
 import com.thinkpad.datvutienwbdemployeemanagement.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
@@ -83,6 +80,14 @@ public class EmployeeController {
         Iterable<Employee> employees = employeeService.findAll();
         modelAndView.addObject("employees", employees);
         modelAndView.addObject("message", "Employee deleted successfully!");
+        return modelAndView;
+    }
+
+    @PostMapping("/search")
+    public ModelAndView search(@RequestParam("word") String word) {
+        Iterable<Employee> employees = employeeService.search(word);
+        ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("employees", employees);
         return modelAndView;
     }
 

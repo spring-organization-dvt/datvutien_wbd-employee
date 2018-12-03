@@ -1,6 +1,8 @@
 package com.thinkpad.datvutienwbdemployeemanagement.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "employee")
@@ -17,6 +19,9 @@ public class Employee {
     private String address;
     private Integer grEmployId;
 
+//    @ManyToOne
+//    @JoinColumn(name = "grEmployId")
+//    private GroupEmployee groupEmployee;
     public Employee(){}
 
 
@@ -91,4 +96,12 @@ public class Employee {
     public void setGrEmployId(Integer grEmployId) {
         this.grEmployId = grEmployId;
     }
+
+//    public GroupEmployee getGroupEmployee() {
+//        return groupEmployee;
+//    }
+//
+//    public void setGroupEmployee(GroupEmployee groupEmployee) {
+//        this.groupEmployee = groupEmployee;
+//    }
 }
