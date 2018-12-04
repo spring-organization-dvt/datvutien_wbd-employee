@@ -18,8 +18,8 @@
     <tr>
         <th>STT</th>
         <th>Ma nhan vien</th>
-        <th>Nhom nhan vien</th>
         <th>Ho ten</th>
+        <th>Nhom nhan vien</th>
         <th>Gioi tinh</th>
         <th>So dien thoai</th>
         <th>Edit</th>
@@ -29,8 +29,8 @@
         <tr>
             <td th:text="${istart.index+1}"></td>
             <td th:text="${employee.id}"></td>
-            <td th:text="${employee.grEmployId}"></td>
             <td th:text="${employee.name}"></td>
+            <td th:text="${employee.groupEmployee.name}"></td>
             <td th:text="${employee.gender}"></td>
             <td th:text="${employee.phoneNumber}"></td>
             <td><a th:href="@{/edit-employee/__${employee.id}__}">Edit</a></td>
