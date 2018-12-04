@@ -1,7 +1,9 @@
 package com.thinkpad.datvutienwbdemployeemanagement.controller;
 
 import com.thinkpad.datvutienwbdemployeemanagement.model.Employee;
+import com.thinkpad.datvutienwbdemployeemanagement.model.GroupEmployee;
 import com.thinkpad.datvutienwbdemployeemanagement.service.EmployeeService;
+import com.thinkpad.datvutienwbdemployeemanagement.service.GroupEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,13 @@ import java.util.Optional;
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private GroupEmployeeService groupEmployeeService;
+
+    @ModelAttribute("groupEmployees")
+    public Iterable<GroupEmployee> groupEmployees() {
+        return groupEmployeeService.findAll();
+    }
 
     @GetMapping("/employees")
     public ModelAndView listEmployee() {
