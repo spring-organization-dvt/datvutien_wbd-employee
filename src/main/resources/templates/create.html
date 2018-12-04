@@ -20,7 +20,10 @@
         <!--</tr>-->
         <tr>
             <td>Nhom nhan vien</td>
-            <td><input type="text" th:field="*{grEmployId}"></td>
+            <td><select th:field="*{grEmployId}">
+                <option th:each="groupEmployee:${groupEmployees}" th:value="${groupEmployee.id}" th:text="${groupEmployee.name}"></option>
+            </select></td>
+
             <td th:if="${#fields.hasErrors('grEmployId')}" th:errors="*{grEmployId}">Name Error</td>
 
         </tr>
