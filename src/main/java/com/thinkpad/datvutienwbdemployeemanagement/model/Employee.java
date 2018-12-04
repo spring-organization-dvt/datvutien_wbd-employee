@@ -19,9 +19,9 @@ public class Employee {
     private String address;
     private Integer grEmployId;
 
-//    @ManyToOne
-//    @JoinColumn(name = "grEmployId")
-//    private GroupEmployee groupEmployee;
+    @ManyToOne
+    @JoinColumn(name = "grEmployId",insertable=false, updatable=false)
+    private GroupEmployee groupEmployee;
     public Employee(){}
 
 
@@ -97,11 +97,11 @@ public class Employee {
         this.grEmployId = grEmployId;
     }
 
-//    public GroupEmployee getGroupEmployee() {
-//        return groupEmployee;
-//    }
-//
-//    public void setGroupEmployee(GroupEmployee groupEmployee) {
-//        this.groupEmployee = groupEmployee;
-//    }
+    public GroupEmployee getGroupEmployee() {
+        return groupEmployee;
+    }
+
+    public void setGroupEmployee(GroupEmployee groupEmployee) {
+        this.groupEmployee = groupEmployee;
+    }
 }
