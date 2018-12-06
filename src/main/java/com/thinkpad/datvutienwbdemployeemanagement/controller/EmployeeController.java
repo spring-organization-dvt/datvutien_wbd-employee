@@ -5,14 +5,30 @@ import com.thinkpad.datvutienwbdemployeemanagement.model.GroupEmployee;
 import com.thinkpad.datvutienwbdemployeemanagement.service.EmployeeService;
 import com.thinkpad.datvutienwbdemployeemanagement.service.GroupEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
 public class EmployeeController {
+    private String getPrincipal(){
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails)principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        return userName;
+    }
     @Autowired
     private EmployeeService employeeService;
     @Autowired
@@ -23,11 +39,12 @@ public class EmployeeController {
         return groupEmployeeService.findAll();
     }
 
-    @GetMapping("/employees")
+    @GetMapping(value = {"/","/employees"})
     public ModelAndView listEmployee() {
         Iterable<Employee> list = employeeService.findAll();
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("employees", list);
+        modelAndView.addObject("user", getPrincipal());
         return modelAndView;
     }
 
@@ -39,12 +56,18 @@ public class EmployeeController {
     }
 
     @PostMapping("/create-employee")
-    public ModelAndView createEmployee(@ModelAttribute("employee") Employee employee) {
-        employeeService.save(employee);
-        ModelAndView modelAndView = new ModelAndView("create");
-        modelAndView.addObject("employee", new Employee());
-        modelAndView.addObject("message", "New Employee created successfully!");
-        return modelAndView;
+    public ModelAndView createEmployee(@Validated @ModelAttribute("employee") Employee employee, BindingResult bindingResult) {
+        if (bindingResult.hasFieldErrors()) {
+            ModelAndView modelAndView = new ModelAndView("create");
+            return modelAndView;
+        } else {
+            employeeService.save(employee);
+            ModelAndView modelAndView = new ModelAndView("create");
+            modelAndView.addObject("employee", new Employee());
+            modelAndView.addObject("message", "New Employee created successfully!");
+            return modelAndView;
+        }
+
     }
 
     @GetMapping("/edit-employee/{id}")
@@ -88,7 +111,7 @@ public class EmployeeController {
         ModelAndView modelAndView = new ModelAndView("index");
         Iterable<Employee> employees = employeeService.findAll();
         modelAndView.addObject("employees", employees);
-        modelAndView.addObject("message", "Employee deleted successfully!");
+        modelAndView.addObject("employee",employee);
         return modelAndView;
     }
 
