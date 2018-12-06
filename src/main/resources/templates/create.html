@@ -15,47 +15,55 @@
 <form method="post" th:action="@{/create-employee}" th:object="${employee}">
     <table>
         <!--<tr>-->
-            <!--<td>Ma nhan vien</td>-->
-            <!--<td><input type="text" th:field="*{id}"/></td>-->
+        <!--<td>Ma nhan vien</td>-->
+        <!--<td><input type="text" th:field="*{id}"/></td>-->
         <!--</tr>-->
         <tr>
-            <td>Nhom nhan vien</td>
+            <td>Nhóm nhân viên</td>
             <td><select th:field="*{grEmployId}">
-                <option th:each="groupEmployee:${groupEmployees}" th:value="${groupEmployee.id}" th:text="${groupEmployee.name}"></option>
+                <option th:each="groupEmployee:${groupEmployees}" th:value="${groupEmployee.id}"
+                        th:text="${groupEmployee.name}"></option>
             </select></td>
-
-            <td th:if="${#fields.hasErrors('grEmployId')}" th:errors="*{grEmployId}">Name Error</td>
+            <!--<td th:if="${#fields.hasErrors('grEmployId')}" th:errors="*{grEmployId}">Name Error</td>-->
 
         </tr>
         <tr>
-            <td>Ho ten</td>
+            <td>Họ tên</td>
             <td><input type="text" th:field="*{name}"></td>
             <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
 
         </tr>
-        <tr><tr>
-            <td>Ngay sinh</td>
-            <td><input type="text" th:field="*{dayOfBirth}"/></td>
-        <td th:if="${#fields.hasErrors('dayOfBirth')}" th:errors="*{dayOfBirth}">Name Error</td>
-
-    </tr>
         <tr>
-            <td>Gioi tinh</td>
-            <td><input type="text" th:field="*{gender}"></td>
-            <td th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}">Name Error</td>
+        <tr>
+            <td>Ngày sinh</td>
+            <td><input type="text" th:field="*{dayOfBirth}"/></td>
+            <td th:if="${#fields.hasErrors('dayOfBirth')}" th:errors="*{dayOfBirth}">Name Error</td>
 
         </tr>
         <tr>
-            <td>So dien thoai</td>
+            <td>Giới tính</td>
+            <!--<td><input type="text" th:field="*{gender}"></td>-->
+            <td>
+                <input type="radio" name="gender" value="Nam" th:field="*{gender}">Nam
+                <input type="radio" name="gender" value="Nữ" th:field="*{gender}">Nữ
+                <input type="radio" name="gender" value="Khác" th:field="*{gender}">Khác
+            </td>
+            <td th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></td>
+
+        </tr>
+        <tr>
+            <td>Số điện thoại</td>
             <td><input type="text" th:field="*{phoneNumber}"></td>
             <td th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">Name Error</td>
 
-        </tr><tr><tr>
-            <td>So CMND</td>
+        </tr>
+        <tr>
+        <tr>
+            <td>Số CMND</td>
             <td><input type="text" th:field="*{idCard}"/></td>
-        <td th:if="${#fields.hasErrors('idCard')}" th:errors="*{idCard}">Name Error</td>
+            <td th:if="${#fields.hasErrors('idCard')}" th:errors="*{idCard}">Name Error</td>
 
-    </tr>
+        </tr>
         <tr>
             <td>Email</td>
             <td><input type="text" th:field="*{email}"></td>
@@ -63,7 +71,7 @@
 
         </tr>
         <tr>
-            <td>Dia chi</td>
+            <td>Địa chỉ</td>
             <td><input type="text" th:field="*{address}"></td>
             <td th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Name Error</td>
 
