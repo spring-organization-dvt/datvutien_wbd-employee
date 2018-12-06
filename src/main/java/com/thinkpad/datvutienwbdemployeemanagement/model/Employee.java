@@ -1,8 +1,13 @@
 package com.thinkpad.datvutienwbdemployeemanagement.model;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Entity
 @Table(name = "employee")
@@ -10,8 +15,12 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @NotBlank(message = "Ten dai qua")
+    @Size(min = 2, max = 30,message = "Tên không được để trống")
     private String name;
+    @NotEmpty(message = "Please, check!")
     private String gender;
+//    @Type("date")
     private String dayOfBirth;
     private String phoneNumber;
     private String idCard;
@@ -20,9 +29,11 @@ public class Employee {
     private Integer grEmployId;
 
     @ManyToOne
-    @JoinColumn(name = "grEmployId",insertable=false, updatable=false)
+    @JoinColumn(name = "grEmployId", insertable = false, updatable = false)
     private GroupEmployee groupEmployee;
-    public Employee(){}
+
+    public Employee() {
+    }
 
 
     public Integer getId() {
